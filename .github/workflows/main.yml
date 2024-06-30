@@ -1,8 +1,9 @@
-name: "Airport Checkin"
+name: "EveryDay Checking"
 
 on:
   schedule:
-    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+    # 分(0-59) 小时(0-23) 日期(1-31) 月份(1-12) 星期(0-7) 年(可选字段) 
+    - cron: "10 16 * * *"  #scheduled at 06:00 (UTC+8) everyday 对应东八区时间加上8个小时
   workflow_dispatch:
 
 env:
