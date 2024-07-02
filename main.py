@@ -45,16 +45,16 @@ try:
     response = json.loads(session.post(url=login_url,headers=header,data=data).text)
     print(response['msg'])
     # 获取之前的流量
-    remain_html = session.get(url=user_info,headers=header).text
+    remain_html = session.get(url=user_url,headers=header).text
     #之前剩余流量
-    remain = re.findall('<span class="counter">(.*?)</span> GB', remain_html, re.S));
+    remain = re.findall('<span class="counter">(.*?)</span> GB', remain_html, re.S);
     # 进行签到
     result = json.loads(session.post(url=check_url,headers=header).text)
     print(result['msg'])
     content = result['msg']
     #签到后获取剩余总流量
-    total_html = session.get(url = user_info,headers = header).text;
-    total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S));
+    total_html = session.get(url = user_url,headers = header).text;
+    total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
     # 进行推送
     content = '签到前剩余: ' + remain[0] + 'GB ' + content + ' 当前总共剩余: ' + total[0] + 'GB';
     push(content)
