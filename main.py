@@ -9,6 +9,10 @@ passwd = os.environ.get('PASSWD')
 SCKEY = os.environ.get('SCKEY')
 # PUSHPLUS
 Token = os.environ.get('TOKEN')
+
+#获取剩余流量的请求路径
+user_url = 'https://ikuuu.pw/user'
+
 def push(content):
     if SCKEY != '1':
         url = "https://sctapi.ftqq.com/{}.send?title={}&desp={}".format(SCKEY, 'ikuuu签到', content)
@@ -40,15 +44,19 @@ try:
     print('进行登录...')
     response = json.loads(session.post(url=login_url,headers=header,data=data).text)
     print(response['msg'])
-    # 获取账号名称
-    info_html = session.get(url=info_url,headers=header).text
-#     info = "".join(re.findall('<span class="user-name text-bold-600">(.*?)</span>', info_html, re.S))
-#     print(info)
+    # 获取之前的流量
+    remain_html = session.get(url=user_info,headers=header).text
+    #之前剩余流量
+    remain = re.findall('<span class="counter">(.*?)</span> GB', remain_html, re.S));
     # 进行签到
     result = json.loads(session.post(url=check_url,headers=header).text)
     print(result['msg'])
     content = result['msg']
+    #签到后获取剩余总流量
+    total_html = session.get(url = user_info,headers = header).text;
+    total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S));
     # 进行推送
+    content = '签到前剩余: ' + remain[0] + 'GB ' + content + ' 当前总共剩余: ' + total[0] + 'GB';
     push(content)
 except:
     content = '签到失败'
