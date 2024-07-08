@@ -59,6 +59,8 @@ try:
     content = '签到前剩余总流量: ' + remain[0] + 'GB\n' + content + '\n当前剩余总流量: ' + total[0] + 'GB';
     push(content)
 except:
-    content = '签到失败'
-    print(content)
-    push(content)
+    total_html = session.get(url = user_url,headers = header).text;
+    total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
+    content = '签到失败' + ',当前剩余总流量: ' + total + "GB" 
+    print(content);
+    push(content);
