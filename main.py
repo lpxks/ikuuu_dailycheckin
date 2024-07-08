@@ -56,7 +56,7 @@ try:
     total_html = session.get(url = user_url,headers = header).text;
     total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
     # 进行推送
-    content = '签到前剩余: ' + remain[0] + 'GB ' + content + ' 当前总共剩余: ' + total[0] + 'GB';
+    content = '签到前剩余总流量: ' + remain[0] + 'GB\n' + content + '\n当前剩余总流量: ' + total[0] + 'GB';
     push(content)
 except:
     content = '签到失败'
