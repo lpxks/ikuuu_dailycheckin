@@ -8,11 +8,20 @@ session = requests.session()
 # 从设置的环境变量中的Variables多个邮箱和密码 ,分割
 emails = os.environ.get('EMAIL', '').split(',')
 passwords = os.environ.get('PASSWD', '').split(',')
-
+print("邮箱地址: \t",emails)
 # server酱
 SCKEY = os.environ.get('SCKEY')
 # PUSHPLUS
 Token = os.environ.get('TOKEN')
+
+
+
+path = "https://ikuuu.one/"
+#获取剩余流量的请求路径
+user_url = path + 'user'
+#获取剩余流量的请求路径
+user_url = path + 'user'
+
 def push(content):
     if SCKEY != '1':
         url = "https://sctapi.ftqq.com/{}.send?title={}&desp={}".format(SCKEY, 'ikuuu签到', content)
