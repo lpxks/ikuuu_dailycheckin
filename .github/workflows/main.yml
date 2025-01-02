@@ -2,7 +2,7 @@ name: "Airport Checkin"
 
 on:
   schedule:
-    # - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+        # 分(0-59) 小时(0-23) 日期(1-31) 月份(1-12) 星期(0-7) 年(可选字段) 
     - cron: "06 22 * * *"  #scheduled at 00:10 (UTC+8) everyday UTC+8比UTC快8个小时
   workflow_dispatch:
 
