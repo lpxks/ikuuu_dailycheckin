@@ -2,7 +2,8 @@ name: "Airport Checkin"
 
 on:
   schedule:
-    - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+    # - cron: "0 22 * * *"  # scheduled at 06:00 (UTC+8) everyday
+    - cron: "06 22 * * *"  #scheduled at 00:10 (UTC+8) everyday UTC+8比UTC快8个小时
   workflow_dispatch:
 
 env:
