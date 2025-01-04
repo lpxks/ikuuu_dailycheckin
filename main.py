@@ -19,8 +19,7 @@ Token = os.environ.get('TOKEN')
 path = "https://ikuuu.one/"
 #获取剩余流量的请求路径
 user_url = path + 'user'
-#获取剩余流量的请求路径
-user_url = path + 'user'
+
 
 def push(content):
     if SCKEY != '1':
@@ -37,9 +36,9 @@ def push(content):
 
 # 会不定时更新域名，记得Sync fork
 
-login_url = 'https://ikuuu.one/auth/login'
-check_url = 'https://ikuuu.one/user/checkin'
-info_url = 'https://ikuuu.one/user/profile'
+login_url = path + 'auth/login'
+check_url = path + 'user/checkin'
+info_url = path + 'user/profile'
 
 header = {
         'origin': 'https://ikuuu.one',
