@@ -67,14 +67,14 @@ for email, passwd in zip(emails, passwords):
         total_html = session.get(url = user_url,headers = header).text;
         total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
         # 进行推送
-        content = email + '\n签到前剩余总流量: ' + remain[0] + 'GB\n' + content + '\n当前剩余总流量: ' + total[0] + 'GB\n';
+        content = email + '\n签到前剩余总流量: ' + remain[0] if len(remain) > 0 else "NULL " + 'GB\n' + content + '\n当前剩余总流量: ' + total[0] if len(total) > 0 else "NULL " + 'GB\n';
         #push(content)
         res += content
     except:
         total_html = session.get(url = user_url,headers = header).text;
         total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
         print(email,passwd)
-        content = email + ' 签到失败' + ',当前剩余总流量: ' + total + "GB\n" 
+        content = email + ' 签到失败' + ',当前剩余总流量: ' + total[0] if len(total) > 0 else "NULL "  + "GB\n" 
         print(content);
         #push(content);
         res += content
