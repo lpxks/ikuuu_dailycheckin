@@ -51,3 +51,10 @@ jobs:
           git pull --rebase --autostash
           git commit --allow-empty -m "$(TZ='Asia/Shanghai' date +'%Y-%m-%d %H:%M:%S')"
           git push
+      - name: 🎉 Delete old workflow run
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7
+          keep_minimum_runs: 30
