@@ -16,7 +16,7 @@ Token = os.environ.get('TOKEN')
 
 
 
-path = "https://ikuuu.one/"
+path = "https://ikuuu.org/"
 #获取剩余流量的请求路径
 user_url = path + 'user'
 
