@@ -72,7 +72,7 @@ for email, passwd in zip(emails, passwords):
         res += content
     except:
         total_html = session.get(url = user_url,headers = header).text;
-        total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
+        total = re.findall('<span class="counter">(.*?)</span>" GB "', total_html, re.S);
         print(email,passwd)
         content = email + ' 签到失败' + ',当前剩余总流量: ' + (total[0] if len(total) > 0 else "NULL ")  + "GB\n" 
         print(content);
