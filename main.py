@@ -58,7 +58,7 @@ for email, passwd in zip(emails, passwords):
         # 获取之前的流量
         remain_html = session.get(url=user_url,headers=header).text
         #之前剩余流量
-        remain = re.findall('<span class="counter">(.*?)</span> GB', remain_html, re.S);
+        remain = re.findall('<span class="counter">(.*?)</span>" GB "', remain_html, re.S);
         # 进行签到
         result = json.loads(session.post(url=check_url,headers=header).text)
         print(result['msg'])
