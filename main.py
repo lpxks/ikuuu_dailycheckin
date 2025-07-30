@@ -57,22 +57,23 @@ for email, passwd in zip(emails, passwords):
         print(response['msg'])
         # 获取之前的流量
         remain_html = session.get(url=user_url,headers=header).text
+        print("======>\t ",remain_html)
         #之前剩余流量
-        remain = re.findall('<span class="counter">(.*?)</span>" GB "', remain_html, re.S);
+        remain = re.findall(r'<span class="counter">(.*?)</span> == £0 GB ', remain_html, re.S);
         # 进行签到
         result = json.loads(session.post(url=check_url,headers=header).text)
         print(result['msg'])
         content = result['msg']
         #签到后获取剩余总流量
         total_html = session.get(url = user_url,headers = header).text;
-        total = re.findall('<span class="counter">(.*?)</span> GB', total_html, re.S);
+        total = re.findall(r'<span class="counter">(.*?)</span> == £0 GB ', total_html, re.S);
         # 进行推送
         content = email + '\n签到前剩余总流量: ' + (remain[0] if len(remain) > 0 else "NULL ") + 'GB\n' + content + '\n当前剩余总流量: ' + (total[0] if len(total) > 0 else "NULL ") + 'GB\n';
         #push(content)
         res += content
     except:
         total_html = session.get(url = user_url,headers = header).text;
-        total = re.findall('<span class="counter">(.*?)</span>" GB "', total_html, re.S);
+        total = re.findall(r'<span class="counter">(.*?)</span> == £0 GB ', total_html, re.S);
         print(email,passwd)
         content = email + ' 签到失败' + ',当前剩余总流量: ' + (total[0] if len(total) > 0 else "NULL ")  + "GB\n" 
         print(content);
